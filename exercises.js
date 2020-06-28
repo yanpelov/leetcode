@@ -98,14 +98,15 @@ var mergeLists = function (l1, l2) {
 
     var currl1 = l1;
     var currl2 = l2;
-    var currl3 = null;
-    var l3 = [];
+    var currl3 = {};
+
+    let head = currl3;
 
     while (currl1 || currl2) {
         if (currl1 && currl2) {
             if (currl1.val == currl2.val) {
                 if (currl3) {
-                    currl3.next = new ListNode(currl1.val, new ListNode(currl2.val));
+                        currl3.next = new ListNode(currl1.val, new ListNode(currl2.val));
                 } else {
                     currl3 = new ListNode(currl1.val, new ListNode(currl2.val));
                 }
@@ -115,51 +116,78 @@ var mergeLists = function (l1, l2) {
             else if(currl1.val > currl2.val)
             {
                 if (currl3) {
-                    currl3.next = new ListNode(currl1.val, new ListNode(currl2.val));
+                    currl3.next = new ListNode(currl2.val, new ListNode(currl1.val));
                 } else {
-                    currl3 = new ListNode(currl1.val, new ListNode(currl2.val));
+                    currl3 = new ListNode(currl2.val, new ListNode(currl1.val));
                 }
             }
 
             else{
                 if (currl3) {
-                    currl3.next = new ListNode(currl2.val, new ListNode(currl1.val));
+                    currl3.next = new ListNode(currl1.val, new ListNode(currl2.val));
                 } else {
-                    currl3 = new ListNode(currl2.val, new ListNode(currl1.val));
+                    currl3 = new ListNode(currl1.val, new ListNode(currl2.val));
                 }
             }            
-
         }
-        l3.push(currl3);
-        currl3= currl3.next;
+        
+        else{
+            if(currl1)
+            {
+                if(currl3)
+                {
+                    currl3.next = new ListNode(currl1.val, null);
+                }
+
+                else{
+                    currl3= new ListNode(currl1.val, null);
+                }
+            }
+
+            else{
+                if(currl3)
+                {
+                    currl3.next = new ListNode(currl2.val, null);
+                }
+
+                else{
+                    currl3= new ListNode(currl2.val, null);
+                }
+            }
+        }
+        
+        currl3 = currl3.next;
+
         if (currl1) {
-            console.log(currl1.val);
             currl1 = currl1.next;
         }
 
         if (currl2) {
-            console.log(currl2.val);
             currl2 = currl2.next;
         }
     }
 
-    return l3;
+    return head;
 };
 
 var mergeTwoLists = function () {
 
 
-    var node1 = new ListNode(4);
-    var node2 = new ListNode(2, node1);
+    var node2 = new ListNode(2, null);
     var l1 = new ListNode(1, node2);
 
      var node4 = new ListNode(4);
-     var node5 = new ListNode(3,node4);
-    //var node5 = new ListNode(3);
+     var node5 = new ListNode(2,node4);
 
     var l2 = new ListNode(1, node5);
 
     var merged = mergeLists(l1, l2);
+    let curr = merged.next;
+    while(curr)
+    {
+        console.log(curr.val);
+        curr = curr.next;
+    }
 }
 
 
@@ -168,4 +196,4 @@ var mergeTwoLists = function () {
 //console.log(isValid('(('))
 //console.log(isValid('()'))
 //console.log(romanToInt("CDXC"))
-console.log(mergeTwoLists())
+mergeTwoLists();
