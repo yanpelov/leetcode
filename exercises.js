@@ -184,8 +184,35 @@ var mergeSortedArrs = function(nums1, nums2,m,n){
       })
 }
 
-mergeSortedArrsSimple(nums1, nums2, m, n);
+
+var linkCircle = function()
+{
+   var head = new ListNode(1, new ListNode(8, new ListNode(9)));
+    head.next.next.next = head.next;
+    if(!head || !head.next )
+    {
+        return false;
+    }
+
+    let zav = head;
+    let arnav = head.next.next;
+
+
+    while( arnav !==zav )
+    {
+        if(!arnav || !arnav.next)
+        {
+            return false;
+        }
+        zav=zav.next;
+        arnav=arnav.next.next;
+       
+    }
+    return true;
+}
 //console.log(isValid('(('))
 //console.log(isValid('()'))
 //console.log(romanToInt("CDXC"))
 //mergeTwoLists();
+//mergeSortedArrs(nums1, nums2, m, n);
+console.log(linkCircle());
