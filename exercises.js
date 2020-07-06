@@ -170,10 +170,22 @@ var mergeTwoLists = function () {
     }
 }
 
+var nums1 = [1,5,0,0,0];
+var nums2 = [2,3,4];
 
+var mergeSortedArrs = function(nums1, nums2,m,n){
+    for(i =m, j = 0;i < (m + n), j<n;i++,j++)
+    {
+        nums1[i] = nums2[j];
+    }
 
+    return nums1.sort(function(a, b) {
+        return a - b;
+      })
+}
 
+mergeSortedArrsSimple(nums1, nums2, m, n);
 //console.log(isValid('(('))
 //console.log(isValid('()'))
 //console.log(romanToInt("CDXC"))
-mergeTwoLists();
+//mergeTwoLists();
