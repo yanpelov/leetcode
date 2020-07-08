@@ -210,9 +210,93 @@ var linkCircle = function()
     }
     return true;
 }
+
+/**
+ * initialize your data structure here.
+ */
+var MinStack = function() {
+    class ListNode{
+        constructor(value, next)
+        {
+            this.value = value;
+            this.next = next;
+        }
+
+    }
+    var head = null;
+
+};
+
+/** 
+ * @param {number} x
+ * @return {void}
+ */
+MinStack.prototype.push = function(x) {
+    if(this.head)
+    {
+        this.head = new ListNode(x,this.head);
+    }
+
+    else{
+
+        this.head = new ListNode(x,null);
+    }
+};
+
+/**
+ * @return {void}
+ */
+MinStack.prototype.pop = function() {
+    this.head = this.head.next;
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.top = function() {
+    return this.head.val;
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.getMin = function() {
+    var curr = this.head;
+    var min = this.head.val;
+    curr = curr.next;
+    while(curr){
+        if(curr.val < min)
+        {
+            min = curr.val;
+        }
+        curr = curr.next;
+    }
+
+    return min;
+};
+
+/** 
+ * Your MinStack object will be instantiated and called as such:
+ * var obj = new MinStack()
+ * obj.push(x)
+ * obj.pop()
+ * var param_3 = obj.top()
+ * var param_4 = obj.getMin()
+ */
 //console.log(isValid('(('))
 //console.log(isValid('()'))
 //console.log(romanToInt("CDXC"))
 //mergeTwoLists();
 //mergeSortedArrs(nums1, nums2, m, n);
+var j = new MinStack();
+j.push(-2);
+j.push(0);
+j.push(-3);
+var min = j.getMin();
+
+j.pop();
+var t = j.top();
+min = j.getMin();
+
+
 console.log(linkCircle());
