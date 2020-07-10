@@ -109,16 +109,12 @@ var mergeLists = function (l1, l2) {
         if (currl1.val <= currl2.val) {
             currl3.val = currl1.val;
             currl1 = currl1.next;
-        }
-
-        else
-        {
+        } else {
             currl3.val = currl2.val;
             currl2 = currl2.next;
         }
 
-        if(currl1 || currl2)              
-        {
+        if (currl1 || currl2) {
             currl3.next = new ListNode(null)
             currl3 = currl3.next;
         }
@@ -145,17 +141,17 @@ var mergeLists = function (l1, l2) {
     }
 
 
-return head;
+    return head;
 };
 
 var mergeTwoLists = function () {
 
 
- //   var l1 = new ListNode(2, new ListNode(2, new ListNode(3)));
-  //  var l2 = new ListNode(1, new ListNode(2, new ListNode(5)));
+    //   var l1 = new ListNode(2, new ListNode(2, new ListNode(3)));
+    //  var l2 = new ListNode(1, new ListNode(2, new ListNode(5)));
 
-  var l1 = new ListNode(1, new ListNode(8, new ListNode(9)));
-  var l2 = new ListNode(1, new ListNode(2, new ListNode(4)));
+    var l1 = new ListNode(1, new ListNode(8, new ListNode(9)));
+    var l2 = new ListNode(1, new ListNode(2, new ListNode(4)));
 
     var merged = mergeLists(l1, l2);
     let curr = merged;
@@ -170,27 +166,24 @@ var mergeTwoLists = function () {
     }
 }
 
-var nums1 = [1,5,0,0,0];
-var nums2 = [2,3,4];
+var nums1 = [1, 5, 0, 0, 0];
+var nums2 = [2, 3, 4];
 
-var mergeSortedArrs = function(nums1, nums2,m,n){
-    for(i =m, j = 0;i < (m + n), j<n;i++,j++)
-    {
+var mergeSortedArrs = function (nums1, nums2, m, n) {
+    for (i = m, j = 0; i < (m + n), j < n; i++, j++) {
         nums1[i] = nums2[j];
     }
 
-    return nums1.sort(function(a, b) {
+    return nums1.sort(function (a, b) {
         return a - b;
-      })
+    })
 }
 
 
-var linkCircle = function()
-{
-   var head = new ListNode(1, new ListNode(8, new ListNode(9)));
+var linkCircle = function () {
+    var head = new ListNode(1, new ListNode(8, new ListNode(9)));
     head.next.next.next = head.next;
-    if(!head || !head.next )
-    {
+    if (!head || !head.next) {
         return false;
     }
 
@@ -198,26 +191,21 @@ var linkCircle = function()
     let arnav = head.next.next;
 
 
-    while( arnav !==zav )
-    {
-        if(!arnav || !arnav.next)
-        {
+    while (arnav !== zav) {
+        if (!arnav || !arnav.next) {
             return false;
         }
-        zav=zav.next;
-        arnav=arnav.next.next;
-       
+        zav = zav.next;
+        arnav = arnav.next.next;
+
     }
     return true;
 }
 
-/**
- * initialize your data structure here.
- */
-var MinStack = function() {
-    class ListNode{
-        constructor(value, next)
-        {
+
+var MinStack = function () {
+    class ListNode {
+        constructor(value, next) {
             this.value = value;
             this.next = next;
         }
@@ -227,46 +215,29 @@ var MinStack = function() {
 
 };
 
-/** 
- * @param {number} x
- * @return {void}
- */
-MinStack.prototype.push = function(x) {
-    if(this.head)
-    {
-        this.head = new ListNode(x,this.head);
-    }
+MinStack.prototype.push = function (x) {
+    if (this.head) {
+        this.head = new ListNode(x, this.head);
+    } else {
 
-    else{
-
-        this.head = new ListNode(x,null);
+        this.head = new ListNode(x, null);
     }
 };
 
-/**
- * @return {void}
- */
-MinStack.prototype.pop = function() {
+MinStack.prototype.pop = function () {
     this.head = this.head.next;
 };
 
-/**
- * @return {number}
- */
-MinStack.prototype.top = function() {
+MinStack.prototype.top = function () {
     return this.head.val;
 };
 
-/**
- * @return {number}
- */
-MinStack.prototype.getMin = function() {
+MinStack.prototype.getMin = function () {
     var curr = this.head;
     var min = this.head.val;
     curr = curr.next;
-    while(curr){
-        if(curr.val < min)
-        {
+    while (curr) {
+        if (curr.val < min) {
             min = curr.val;
         }
         curr = curr.next;
@@ -275,28 +246,48 @@ MinStack.prototype.getMin = function() {
     return min;
 };
 
-/** 
- * Your MinStack object will be instantiated and called as such:
- * var obj = new MinStack()
- * obj.push(x)
- * obj.pop()
- * var param_3 = obj.top()
- * var param_4 = obj.getMin()
- */
+var majority = function () {
+    var len = nums.length;
+
+    if(len == 1)
+    {
+        return nums[0];
+    }
+
+    nums.sort(function (a, b) {
+        return a - b;
+    });
+
+    var major = 0;
+
+    if (len % 2 == 0) {
+        major = len / 2;
+    } else {
+        major = Math.floor(len / 2);
+    }
+
+    var count = 0;
+
+    for (let i = 0; i < len - 1; i++) {
+
+        if (nums[i] == nums[i + 1]) {
+            count++;
+        } else {
+            count = 0;
+        }
+
+        if (count == major) {
+            return nums[i];
+        }
+    }
+}
+
+
+console.log(majority([-1,1,-1]));
+
 //console.log(isValid('(('))
 //console.log(isValid('()'))
 //console.log(romanToInt("CDXC"))
 //mergeTwoLists();
 //mergeSortedArrs(nums1, nums2, m, n);
-var j = new MinStack();
-j.push(-2);
-j.push(0);
-j.push(-3);
-var min = j.getMin();
-
-j.pop();
-var t = j.top();
-min = j.getMin();
-
-
-console.log(linkCircle());
+//console.log(linkCircle());
