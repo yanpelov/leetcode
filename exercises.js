@@ -249,8 +249,7 @@ MinStack.prototype.getMin = function () {
 var majority = function () {
     var len = nums.length;
 
-    if(len == 1)
-    {
+    if (len == 1) {
         return nums[0];
     }
 
@@ -281,10 +280,38 @@ var majority = function () {
         }
     }
 }
+/*
+var rotateArr = function (nums, k) {
+    var newA = []
+    for (i = 0; i < nums.length; i++) {
 
+        newA[(i + k) % nums.length] = nums[i]
 
-console.log(majority([-1,1,-1]));
+    }
+    return newA;
+}*/
 
+var rotateArrSwap = function (nums, k) {
+    var swap = null;
+
+    for (j = 0; j < k; j++) {
+        for (i = nums.length - 1; i > 0; i--) {
+
+            swap = nums[i];
+            nums[i] = nums[i - 1];
+            nums[i - 1] = swap;
+        }
+    }
+
+    return nums;
+}
+
+let nums = [1,2,3,4,5,6,7];
+console.log(rotateArrSwap(nums, 3));
+//console.log(rotateArr(nums, 1));
+
+//let nums = [-1,1,-1];
+//console.log(majority(nums));
 //console.log(isValid('(('))
 //console.log(isValid('()'))
 //console.log(romanToInt("CDXC"))
