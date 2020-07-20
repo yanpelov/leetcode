@@ -280,7 +280,7 @@ var majority = function () {
         }
     }
 }
-/*
+
 var rotateArr = function (nums, k) {
     var newA = []
     for (i = 0; i < nums.length; i++) {
@@ -289,8 +289,23 @@ var rotateArr = function (nums, k) {
 
     }
     return newA;
-}*/
-
+}
+var rev = function (nums, s, e) {
+    var tmp = null;
+    while (s < e) {
+        tmp = nums[s];
+        nums[s] = nums[e];
+        nums[e] = tmp;
+        s++;
+        e--;
+    }
+}
+/*var rotateArr = function (nums,k){
+    rev(nums, 0, nums.length - 1);
+    rev(nums, 0, k - 1);
+    rev(nums,k,nums.length - 1);
+    return nums;
+} */
 var rotateArrSwap = function (nums, k) {
     var swap = null;
 
@@ -306,8 +321,40 @@ var rotateArrSwap = function (nums, k) {
     return nums;
 }
 
-let nums = [1,2,3,4,5,6,7];
-console.log(rotateArrSwap(nums, 3));
+var isHappy = function (n) {
+
+    var sum = 0;
+    var str = n.toString();
+    //var myarr = new Map();
+
+    while (sum !== 1) {
+        sum = 0;
+        for (let i = 0; i < str.length; i++) {
+            sum += Math.pow(str[i], 2)
+        }
+
+        if (sum == 4)
+            return false;
+
+        str = sum.toString();
+        /*console.log(str);
+        if(myarr[str]!=true)
+             myarr[str] = true;
+        else return false;*/
+    }
+    return true;
+}
+
+/*for (i = 1; i < 101; i++) {
+    console.log("---" + i + "---");
+    console.log(isHappy(i));
+}*/
+
+//console.log(isHappy(4))
+//let nums = [1,2,3,4,5,6,7];
+//console.log(rotateArrSwap(nums, 3));
+//console.log(rotateArr(nums, 3));
+
 //console.log(rotateArr(nums, 1));
 
 //let nums = [-1,1,-1];
