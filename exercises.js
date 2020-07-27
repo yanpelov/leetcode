@@ -345,6 +345,31 @@ var isHappy = function (n) {
     return true;
 }
 
+var cntPrimes = function(n){
+    var cnt = 0;
+    for(i = n - 1; i > 1; i--)
+    {
+            var top = Math.floor(i/2);
+            for(j = 2; j <= top; j++)
+            {
+                if(i%j==0)
+                {
+                    break;
+                }
+            }
+
+            if(j == top+1)
+            {
+                cnt++;
+            }
+    }
+    return cnt;
+}
+
+for(let y = 2;y < 10000; y++)
+{
+    console.log("y:" + y + " cnt:"+ cntPrimes(y));
+}
 /*for (i = 1; i < 101; i++) {
     console.log("---" + i + "---");
     console.log(isHappy(i));
