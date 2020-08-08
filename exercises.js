@@ -349,7 +349,7 @@ var cntPrimes = function(n){
     var cnt = 0;
     for(i = n - 1; i > 1; i--)
     {
-            var top = Math.floor(i/2);
+            var top = Math.floor(Math.sqrt(i));
             for(j = 2; j <= top; j++)
             {
                 if(i%j==0)
@@ -365,28 +365,33 @@ var cntPrimes = function(n){
     }
     return cnt;
 }
+//egg abb e-a =5-1,e+a =6; g-b =7-2, 9; g-b = 7-2,9    4 + 5 + 5
 
-for(let y = 2;y < 10000; y++)
-{
-    console.log("y:" + y + " cnt:"+ cntPrimes(y));
+//foo bar    f-b = 6-2, 8; o-a 15-1, 16; 15-18=-3, 33 foo abr
+//abc ddf
+
+
+//circle paper
+var isMorphic = function(s,t){
+    return isMorphicHelper(s,t) && isMorphicHelper(t,s);
 }
-/*for (i = 1; i < 101; i++) {
-    console.log("---" + i + "---");
-    console.log(isHappy(i));
-}*/
 
-//console.log(isHappy(4))
-//let nums = [1,2,3,4,5,6,7];
-//console.log(rotateArrSwap(nums, 3));
-//console.log(rotateArr(nums, 3));
+var isMorphicHelper = function(s,t){
+    let myMap = {};
+    for(i = 0; i<s.length;i++)
+    {
+        if(!myMap[s.charAt(i)])
+        {
+            myMap[s.charAt(i)] = t.charAt(i);
+        }
 
-//console.log(rotateArr(nums, 1));
+        else{
+            if(myMap[s.charAt(i)]!==t.charAt(i))
+            return false;
+        }
+    }
 
-//let nums = [-1,1,-1];
-//console.log(majority(nums));
-//console.log(isValid('(('))
-//console.log(isValid('()'))
-//console.log(romanToInt("CDXC"))
-//mergeTwoLists();
-//mergeSortedArrs(nums1, nums2, m, n);
-//console.log(linkCircle());
+    return true;
+}
+console.log(isMorphic("abb", "egg"));
+
