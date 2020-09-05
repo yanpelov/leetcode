@@ -395,3 +395,118 @@ var isMorphicHelper = function(s,t){
 }
 console.log(isMorphic("abb", "egg"));
 
+class Tree{
+    constructor(value,left,right){
+        this.value = value;
+
+        this.left = left;
+        this.right = right;
+    }
+}
+
+let char = "\t";
+let orig = 5;
+var printTree = function(t,lvl){
+    
+    let replace = char.repeat(lvl);
+    if(t.value){
+        console.log(replace + t.value);
+    } 
+
+    if(t.left){
+        printTree(t.left, lvl-1);
+    if (t.right) printTree(t.right, lvl+1);
+    }
+
+    else if (t.right){
+         printTree(t.right, lvl+1);
+    }
+
+}
+
+/*var printTree = function(t,lvl){
+    
+    if(t.value)
+    {
+        if(t.left)
+        {
+            console.log(t.left.v);
+
+            if(t.right)
+            {
+                console.log(t.right.v)
+            }
+        }
+    }
+    let replace = char.repeat(lvl);
+    if(t.value){
+        console.log(replace + t.value);
+    } 
+
+    if(t.left){
+        printTree(t.left, lvl-1);
+    if (t.right) printTree(t.right, lvl+1);
+    }
+
+    else if (t.right){
+         printTree(t.right, lvl+1);
+    }
+
+}*/
+/*       4
+    2          7    
+1       3   6      9
+
+
+        4
+    7           2
+9       6   3       1
+        
+*/
+var invertTree = function(root){
+
+    if(!root)
+    {
+        return;
+    }
+
+    if(root.left || root.right)
+    {
+        let tmp = root.left;
+        root.left = root.right;
+        root.right = tmp;
+
+        if(root.left)
+        {
+            invertTree(root.left);
+        }
+
+        if(root.right)
+        {
+            invertTree(root.right);
+        }
+    }
+
+}
+
+var treeTest =  function(){
+     
+    var root = new Tree(4,
+                     new Tree(2,
+                          new Tree(1,null,null),null
+                        //  new Tree(3,null,null)
+                          ),null
+                   /*  new Tree(7,
+                          new Tree(6,null,null),
+                          new Tree(9,null,null))
+                          */);
+    printTree(root,5);
+    invertTree(root);
+    console.log("\n----\n");
+    printTree(root,5);
+
+
+}
+
+
+treeTest();
