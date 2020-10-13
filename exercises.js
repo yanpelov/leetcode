@@ -345,23 +345,19 @@ var isHappy = function (n) {
     return true;
 }
 
-var cntPrimes = function(n){
+var cntPrimes = function (n) {
     var cnt = 0;
-    for(i = n - 1; i > 1; i--)
-    {
-            var top = Math.floor(Math.sqrt(i));
-            for(j = 2; j <= top; j++)
-            {
-                if(i%j==0)
-                {
-                    break;
-                }
+    for (i = n - 1; i > 1; i--) {
+        var top = Math.floor(Math.sqrt(i));
+        for (j = 2; j <= top; j++) {
+            if (i % j == 0) {
+                break;
             }
+        }
 
-            if(j == top+1)
-            {
-                cnt++;
-            }
+        if (j == top + 1) {
+            cnt++;
+        }
     }
     return cnt;
 }
@@ -372,31 +368,27 @@ var cntPrimes = function(n){
 
 
 //circle paper
-var isMorphic = function(s,t){
-    return isMorphicHelper(s,t) && isMorphicHelper(t,s);
+var isMorphic = function (s, t) {
+    return isMorphicHelper(s, t) && isMorphicHelper(t, s);
 }
 
-var isMorphicHelper = function(s,t){
+var isMorphicHelper = function (s, t) {
     let myMap = {};
-    for(i = 0; i<s.length;i++)
-    {
-        if(!myMap[s.charAt(i)])
-        {
+    for (i = 0; i < s.length; i++) {
+        if (!myMap[s.charAt(i)]) {
             myMap[s.charAt(i)] = t.charAt(i);
-        }
-
-        else{
-            if(myMap[s.charAt(i)]!==t.charAt(i))
-            return false;
+        } else {
+            if (myMap[s.charAt(i)] !== t.charAt(i))
+                return false;
         }
     }
 
     return true;
 }
-console.log(isMorphic("abb", "egg"));
 
-class Tree{
-    constructor(value,left,right){
+
+class Tree {
+    constructor(value, left, right) {
         this.value = value;
 
         this.left = left;
@@ -406,20 +398,18 @@ class Tree{
 
 let char = "\t";
 let orig = 5;
-var printTree = function(t,lvl){
-    
-    let replace = char.repeat(lvl);
-    if(t.value){
-        console.log(replace + t.value);
-    } 
+var printTree = function (t, lvl) {
 
-    if(t.left){
-        printTree(t.left, lvl-1);
-    if (t.right) printTree(t.right, lvl+1);
+    let replace = char.repeat(lvl);
+    if (t.value) {
+        console.log(replace + t.value);
     }
 
-    else if (t.right){
-         printTree(t.right, lvl+1);
+    if (t.left) {
+        printTree(t.left, lvl - 1);
+        if (t.right) printTree(t.right, lvl + 1);
+    } else if (t.right) {
+        printTree(t.right, lvl + 1);
     }
 
 }
@@ -453,7 +443,19 @@ var printTree = function(t,lvl){
     }
 
 }*/
-/*       4
+/*   
+4,2,1,3,7,6,9
+769213
+7
+96213
+9
+6
+2
+31
+3
+1
+
+        4
     2          7    
 1       3   6      9
 
@@ -463,7 +465,22 @@ var printTree = function(t,lvl){
 9       6   3       1
         
 */
-var invertTree = function(root){
+
+function invertTree(root) {
+    const stack = [root];
+
+    while (stack.length) {
+        const n = stack.pop();
+        if (n != null) {
+            [n.left, n.right] = [n.right, n.left];
+            stack.push(n.left, n.right);
+        }
+    }
+
+    return root;
+}
+
+/*var invertTree = function(root){
 
     if(!root)
     {
@@ -487,26 +504,75 @@ var invertTree = function(root){
         }
     }
 
-}
+}*/
 
-var treeTest =  function(){
-     
+var treeTest = function () {
+
     var root = new Tree(4,
-                     new Tree(2,
-                          new Tree(1,null,null),null
-                        //  new Tree(3,null,null)
-                          ),null
-                   /*  new Tree(7,
-                          new Tree(6,null,null),
-                          new Tree(9,null,null))
-                          */);
-    printTree(root,5);
+        new Tree(2,
+            new Tree(1, null, null),
+            new Tree(3, null, null)
+        ),
+        new Tree(7,
+            new Tree(6, null, null),
+            new Tree(9, null, null)));
+    printTree(root, 5);
     invertTree(root);
     console.log("\n----\n");
-    printTree(root,5);
+    printTree(root, 5);
 
 
 }
 
 
-treeTest();
+//treeTest();
+
+/*var isAnagram = function(s,t){
+    sLen = s.length;
+    tLen = t.length;
+
+    if(sLen!=tLen)
+    return false;
+
+    let sum = 0;
+    for(let i =0; i<sLen;i++)
+    {
+        sum += s.charCodeAt(i) - t.charCodeAt(i);
+    }
+
+    if(sum!=0)
+    {
+        return false;
+    }
+
+    return true;
+}*/
+
+var isAnagram = function (s, t) {
+
+    let map = {};
+
+    if (s.length != t.length) return false;
+
+    for (let i = 0; i < s.length; i++) {
+
+        if (map[s.charCodeAt(i)] > 0) {
+            map[s.charCodeAt(i)]++;
+        } 
+        
+        else {
+            map[s.charCodeAt(i)] = 1;
+        }
+    }
+
+    for (let i = 0; i < t.length; i++) {
+        map[t.charCodeAt(i)]--;
+        if (isNaN(map[t.charCodeAt(i)]) || map[t.charCodeAt(i)] < 0) return false;
+    }
+    return true;
+}
+
+
+
+
+console.log(isAnagram("a", "b"));
