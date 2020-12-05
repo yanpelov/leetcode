@@ -572,7 +572,52 @@ var isAnagram = function (s, t) {
     return true;
 }
 
+     /*
 
+var findDisappearedNumbers = function(nums) {
+    for(i=0;i<nums.length;i++)
+    {
+        let keep = nums[i];
+        nums[i] = nums[keep-1];
+        nums[keep-1] = keep;  
+    }
+};
 
+findDisappearedNumbers([4,3,2,7,8,2,3,1]);*/
 
-console.log(isAnagram("a", "b"));
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var reverseWords = function(s) {
+    let stack = [];
+    let newStr = "";
+    
+    for(let i = 0; i < s.length; i++)
+        {   
+            if(s[i]!==' ')
+                {
+                    stack.push(s[i]);
+                }
+            
+            else{
+                let len = stack.length;
+                for(let y = 0; y < len; y++)
+                    {
+                        newStr += stack.pop();
+                    }
+                newStr+=' ';
+            }
+        }
+    let len = stack.length;
+    if(len > 0){
+        for(let y =0; y < len; y++)
+            {
+                newStr += stack.pop();
+            }
+    }
+    
+    return newStr;
+};
+
+reverseWords("Let's take LeetCode contest");
