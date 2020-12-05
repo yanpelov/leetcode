@@ -550,17 +550,15 @@ var treeTest = function () {
 
 var isAnagram = function (s, t) {
 
-    let map = {};
+        let map = {};
 
     if (s.length != t.length) return false;
 
     for (let i = 0; i < s.length; i++) {
 
-        if (map[s.charCodeAt(i)] > 0) {
-            map[s.charCodeAt(i)]++;
-        } 
-        
-        else {
+        if (map[s[i]] > 0) {
+            map[s[i]]++;
+        } else {
             map[s.charCodeAt(i)] = 1;
         }
     }
@@ -574,6 +572,7 @@ var isAnagram = function (s, t) {
 
      /*
 
+<<<<<<< HEAD
 var findDisappearedNumbers = function(nums) {
     for(i=0;i<nums.length;i++)
     {
@@ -621,3 +620,70 @@ var reverseWords = function(s) {
 };
 
 reverseWords("Let's take LeetCode contest");
+
+var toBinary = function(a){
+
+    let str = '';
+    while(a !=0 )
+    {
+        if(a & 1)
+        {
+            let one = 1;
+            str+=one.toString();
+        }
+
+        else{
+            let zero = 0;
+            str+=zero.toString();
+        }
+        a=  a >> 1;
+
+    }
+    console.log(str);
+}
+
+toBinary(5);
+
+
+var sumInts= function(a,b){
+    
+    while(b) {
+        carry = a & b;
+        a ^= b;
+        b = carry << 1;
+    }
+    
+    return a;
+}
+
+//console.log(sumInts(-5,7));
+
+
+let findMissing = function(nums){
+
+    nums.sort(function(a,b){return a-b});
+
+    for(let i = 1; i <=nums.length;i++)
+    {
+        delete nums[i];
+    }
+
+    return nums;
+ /*   let map = {};
+
+    for(let i = 1; i <= nums.length; i++){
+        map[i] = 1;
+    }
+
+    for(let i = 0; i < nums.length; i++){
+
+            delete map[nums[i]];
+        
+    }
+
+    return Object.keys(map);*/
+}
+
+let nums = [4,3,2,7,8,2,3,1];
+
+findMissing(nums);
