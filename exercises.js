@@ -711,7 +711,6 @@ let flower = function (flowerbed, n) {
             }
         }
     }
-console.log("cnt:"+cnt);
     if (cnt >= n) {
         return true;
     } else {
