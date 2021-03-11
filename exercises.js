@@ -550,7 +550,7 @@ var treeTest = function () {
 
 var isAnagram = function (s, t) {
 
-        let map = {};
+    let map = {};
 
     if (s.length != t.length) return false;
 
@@ -570,7 +570,7 @@ var isAnagram = function (s, t) {
     return true;
 }
 
-     /*
+/*
 
 <<<<<<< HEAD
 var findDisappearedNumbers = function(nums) {
@@ -588,55 +588,45 @@ findDisappearedNumbers([4,3,2,7,8,2,3,1]);*/
  * @param {string} s
  * @return {string}
  */
-var reverseWords = function(s) {
+var reverseWords = function (s) {
     let stack = [];
     let newStr = "";
-    
-    for(let i = 0; i < s.length; i++)
-        {   
-            if(s[i]!==' ')
-                {
-                    stack.push(s[i]);
-                }
-            
-            else{
-                let len = stack.length;
-                for(let y = 0; y < len; y++)
-                    {
-                        newStr += stack.pop();
-                    }
-                newStr+=' ';
-            }
-        }
-    let len = stack.length;
-    if(len > 0){
-        for(let y =0; y < len; y++)
-            {
+
+    for (let i = 0; i < s.length; i++) {
+        if (s[i] !== ' ') {
+            stack.push(s[i]);
+        } else {
+            let len = stack.length;
+            for (let y = 0; y < len; y++) {
                 newStr += stack.pop();
             }
+            newStr += ' ';
+        }
     }
-    
+    let len = stack.length;
+    if (len > 0) {
+        for (let y = 0; y < len; y++) {
+            newStr += stack.pop();
+        }
+    }
+
     return newStr;
 };
 
 reverseWords("Let's take LeetCode contest");
 
-var toBinary = function(a){
+var toBinary = function (a) {
 
     let str = '';
-    while(a !=0 )
-    {
-        if(a & 1)
-        {
+    while (a != 0) {
+        if (a & 1) {
             let one = 1;
-            str+=one.toString();
-        }
-
-        else{
+            str += one.toString();
+        } else {
             let zero = 0;
-            str+=zero.toString();
+            str += zero.toString();
         }
-        a=  a >> 1;
+        a = a >> 1;
 
     }
     console.log(str);
@@ -645,45 +635,88 @@ var toBinary = function(a){
 toBinary(5);
 
 
-var sumInts= function(a,b){
-    
-    while(b) {
+var sumInts = function (a, b) {
+
+    while (b) {
         carry = a & b;
         a ^= b;
         b = carry << 1;
     }
-    
+
     return a;
 }
 
 //console.log(sumInts(-5,7));
 
 
-let findMissing = function(nums){
+let findMissing = function (nums) {
 
-    nums.sort(function(a,b){return a-b});
+    nums.sort(function (a, b) {
+        return a - b
+    });
 
-    for(let i = 1; i <=nums.length;i++)
-    {
+    for (let i = 1; i <= nums.length; i++) {
         delete nums[i];
     }
 
     return nums;
- /*   let map = {};
+    /*   let map = {};
 
-    for(let i = 1; i <= nums.length; i++){
-        map[i] = 1;
-    }
+       for(let i = 1; i <= nums.length; i++){
+           map[i] = 1;
+       }
 
-    for(let i = 0; i < nums.length; i++){
+       for(let i = 0; i < nums.length; i++){
 
-            delete map[nums[i]];
-        
-    }
+               delete map[nums[i]];
+           
+       }
 
-    return Object.keys(map);*/
+       return Object.keys(map);*/
 }
 
-let nums = [4,3,2,7,8,2,3,1];
+let nums = [4, 3, 2, 7, 8, 2, 3, 1];
 
 findMissing(nums);
+
+
+
+let flower = function (flowerbed, n) {
+    let cnt = 0;
+    for (let i = 0; i < flowerbed.length; i++) {
+        if (flowerbed[i] === 1) {
+            i++;
+        } else {
+            if (flowerbed[i + 1] === 0) {
+                if (i === 0) {
+                    cnt++;
+                    i++;
+                } else {
+                    if (flowerbed[i - 1] === 1) {
+                    } else {
+                        cnt++;
+                        i++;
+                    }
+                }
+            } else {
+                if (flowerbed[i + 1] == 1) {
+                    i++;
+                } else {
+                    if(flowerbed[i-1] === 0 || i == 0)
+                    {
+                      cnt++;
+                      i++;
+                    }
+                }
+            }
+        }
+    }
+console.log("cnt:"+cnt);
+    if (cnt >= n) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+flower([0], 2)
