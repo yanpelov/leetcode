@@ -396,6 +396,47 @@ class Tree {
     }
 }
 
+let root1 = new Tree(1,
+                new Tree(2, 
+                    new Tree(3, null,null),
+                    null),
+                null);
+let root2 = new Tree(1,
+                null,
+                new Tree(2,
+                    null, 
+                    new Tree(3, null,null)));
+
+ /*root1 = new Tree(1,
+                new Tree(3, 
+                        new Tree(5,null,null),
+                        null),
+                new Tree(2,null,null));
+ root2 = new Tree(2,
+                new Tree(1,
+                    null, 
+                    new Tree(4, null,null)),
+                new Tree(3,
+                    null, 
+                    new Tree(7,null,null)));*/
+var mergeTrees = function(root1, root2) {
+
+    if(root1 == null && root2 == null)
+        {return null}
+        
+         if(root1 == null && root2 !=null){
+             return new Tree(root2.value,mergeTrees(root2.left,null),mergeTrees(root2.right,null));
+        }
+        
+             if(root1 != null && root2 ==null){
+             return new Tree(root1.value,mergeTrees(root1.left, null),mergeTrees(root1.right, null));
+        }
+        
+        if(root1!=null && root2!=null){
+            return new Tree(root1.value+root2.value, mergeTrees(root1.left,root2.left), mergeTrees(root1.right,root2.right))
+        }
+    };
+console.log(mergeTrees(root1,root2));
 let char = "\t";
 let orig = 5;
 var printTree = function (t, lvl) {
